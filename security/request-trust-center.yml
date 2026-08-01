@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: searched
+probe: true
+source: https://www.requestfinance.com/
+url: https://www.requestfinance.com/
+certifications:
+- SOC 2
+evidence:
+- source: https://www.requestfinance.com/
+  keywords:
+  - soc 2
+  - soc2

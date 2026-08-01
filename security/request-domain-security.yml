@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.request.finance
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 26 07:06:19 2026 GMT
+  hsts: true
+  hsts_max_age: 63072000
+- host: docs.request.finance
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 10 02:25:47 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.request.finance
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 28 08:02:16 2026 GMT
+  hsts: null
+domains:
+- domain: request.finance
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: quarantine

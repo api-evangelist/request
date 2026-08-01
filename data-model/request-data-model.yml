@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/invoices
+note: >-
+  Derived from the documented REST resources and id-reference fields (no OpenAPI
+  published). Request Finance models invoices and payroll payments as the same
+  underlying object distinguished by meta.format (rnf_invoice vs rnf_salary).
+entities:
+- name: Invoice
+  id_field: id
+  also: requestId (on-chain Request Network id)
+  variant: rnf_invoice
+  key_fields: [buyerInfo, sellerInfo, invoiceItems, invoiceNumber, paymentOptions, paymentTerms, status]
+  statuses: [draft, pending, open, paid, declaredPaid, accepted, canceled, rejected, scheduled, overdue]
+  endpoints: ['POST /invoices', 'GET /invoices', 'GET /invoices/{id}', 'POST /invoices/{id}', 'POST /invoices/{id}/changes', 'GET /invoices/{id}/pdf/{type}']
+- name: Salary
+  id_field: id
+  variant: rnf_salary
+  note: Payroll payment; created via POST /invoices with meta.format rnf_salary.
+  key_fields: [sellerInfo, buyerInfo, invoiceItems, paymentOptions, recurringRule]
+- name: Organization
+  id_field: id
+  endpoints: [GET /users/organizations]
+  note: A user's data may reside in a personal account or an organization.
+- name: Client
+  id_field: id
+  types: [customer, supplier]
+  endpoints: ['GET /clients', 'GET /clients/{id}']
+- name: User
+  id_field: userId
+  endpoints: [GET /users]
+- name: Payment
+  note: Payment declarations attached to an invoice via POST /invoices/{id}/changes.
+relationships:
+- from: Invoice
+  to: User
+  type: belongs_to
+  via: buyerInfo.userId / sellerInfo.userId
+- from: Invoice
+  to: Organization
+  type: belongs_to
+  via: organization (current login context)
+- from: Invoice
+  to: Client
+  type: references
+  via: buyerInfo / sellerInfo
+- from: Invoice
+  to: Payment
+  type: has_many
+  via: POST /invoices/{id}/changes (declareReceivedPayment)
+- from: User
+  to: Organization
+  type: has_many
+  via: GET /users/organizations
+- from: Client
+  to: Organization
+  type: belongs_to
+  via: owning account/organization

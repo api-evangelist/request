@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/going-live
+docs: https://docs.request.finance/going-live
+schemes:
+- name: oauth2
+  issuer: https://auth.request.finance
+  audience: accounts
+  authorizationUrl: https://auth.request.finance/authorize
+  tokenUrl: https://auth.request.finance/oauth/token
+  flows: [authorizationCode, clientCredentials]
+scopes:
+- scope: openid
+  description: Standard OpenID Connect scope; enables ID token issuance.
+  flows: [authorizationCode]
+- scope: profile
+  description: Access to the user's basic profile claims.
+  flows: [authorizationCode]
+- scope: email
+  description: Access to the user's email address.
+  flows: [authorizationCode]
+- scope: offline_access
+  description: >-
+    Issues a refresh token so the app can obtain new access tokens after the 24-hour
+    access-token expiry. Required for long-lived Authorization Code Flow integrations;
+    not used in Client Credentials Flow.
+  flows: [authorizationCode]
+- scope: user:read
+  description: >-
+    Read access to user data, including listing the organizations a user belongs to
+    (GET /users/organizations).
+  flows: [authorizationCode]
+  source: https://docs.request.finance/organizations
+notes: >-
+  The docs enumerate a baseline scope set (openid profile email offline_access) plus
+  additional scopes such as user:read. Use prompt=consent on the authorization URL to
+  force re-consent when a user is missing a scope.

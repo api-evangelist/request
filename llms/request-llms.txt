@@ -1,0 +1,32 @@
+# API Documentation
+
+## AP and AR API
+
+- [Welcome](https://docs.request.finance/welcome.md)
+- [Getting Started](https://docs.request.finance/getting-started.md)
+- [Testing](https://docs.request.finance/testing.md)
+- [Invoices](https://docs.request.finance/invoices.md)
+- [Payroll](https://docs.request.finance/salaries.md)
+- [Organizations](https://docs.request.finance/organizations.md)
+- [Clients](https://docs.request.finance/clients.md)
+- [Document Download (PDF)](https://docs.request.finance/document-download-pdf.md)
+- [Webhooks](https://docs.request.finance/webhooks.md): Request Finance API - Webhooks Documentation
+- [Going Live](https://docs.request.finance/going-live.md)
+- [Rate Limits](https://docs.request.finance/rate-limits.md): "What rate limits do you have on the API?"
+- [Currencies](https://docs.request.finance/currencies.md): "Which currencies and networks do you support?"
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.request.finance/welcome.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/getting-started
+api_style:
+  protocol: REST
+  encoding: JSON request and response bodies
+  status_codes: Standard HTTP response codes
+  base_url: https://api.request.finance/
+authentication:
+  style: Bearer (API key) or OAuth 2.0 / OIDC Bearer access token
+  network_header: 'X-Network: test | live (required for OAuth calls)'
+  ref: authentication/request-authentication.yml
+pagination:
+  style: offset
+  params:
+    take: Items per page. Default 25, maximum 100.
+    skip: Number of items to skip (page offset). Default 0.
+  extra: >-
+    Pass format=paginated on GET /invoices to also return total counts (with and
+    without filters) and per-status counts.
+  applies_to: [GET /invoices]
+filtering:
+  invoices: [search, status, creationDateRange, variant, filterBy, withLinks, format]
+  note: >-
+    status accepts an array from a fixed set (draft, pending, open, paid, declaredPaid,
+    accepted, canceled, rejected, scheduled, overdue). variant filters rnf_invoice vs
+    rnf_salary. filterBy is sent | received.
+idempotency:
+  supported: partial
+  mechanism: >-
+    invoiceNumber must be unique per invoice/payroll payment, giving a natural
+    business-key dedup on creation. There is no general-purpose Idempotency-Key header
+    documented.
+rate_limit_signaling:
+  headers:
+    X-Rate-Limit-Limit: Ceiling for the endpoint.
+    X-Rate-Limit-Remaining: Requests remaining for the endpoint.
+    X-Rate-Limit-Reset: Seconds until the window resets.
+    Retry-After: Seconds to wait, sent on blocked (429) requests.
+  tiers:
+    unauthenticated: 500 calls/hour
+    authenticated_api_key: 5000 calls/hour
+    oauth: 15000 calls/hour
+  ref: https://docs.request.finance/rate-limits
+versioning:
+  api: Single unversioned base host (api.request.finance); no URI version segment.
+  payload: >-
+    Request Network document format is versioned via meta.format (rnf_invoice /
+    rnf_salary) and meta.version (e.g. 0.0.3).
+error_envelope:
+  format: Standard HTTP status codes with JSON bodies.
+  note: >-
+    No RFC 9457 problem+json content type documented. Errors surface via HTTP status
+    plus a JSON body.
+webhooks:
+  ref: asyncapi/request-webhooks.yml
+  signature: 'X-Webhook-Signature (HMAC-SHA256 of the raw body, keyed by webhook secret)'
+cross_links:
+  authentication: authentication/request-authentication.yml
+  scopes: scopes/request-scopes.yml
+  lifecycle: lifecycle/request-lifecycle.yml
+  sandbox: sandbox/request-sandbox.yml
+  webhooks: asyncapi/request-webhooks.yml

@@ -1,0 +1,43 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+provider: Request Finance
+providerId: request
+generated: '2026-07-20'
+method: searched
+created: '2026-07-20'
+modified: '2026-07-20'
+tags:
+- Rate Limiting
+- Payments
+description: >-
+  Request Finance enforces global hourly rate limits by authentication mode, with
+  stricter per-endpoint limits on some endpoints. Rate-limit state is returned in
+  X-Rate-Limit-* headers and a Retry-After on blocked requests.
+sources:
+- https://docs.request.finance/rate-limits
+headers:
+  limit: X-Rate-Limit-Limit
+  remaining: X-Rate-Limit-Remaining
+  reset: X-Rate-Limit-Reset
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+- name: Unauthenticated users
+  scope: global
+  metric: requests_per_hour
+  limit: 500
+  timeFrame: hour
+- name: Authenticated users (API key)
+  scope: global
+  metric: requests_per_hour
+  limit: 5000
+  timeFrame: hour
+- name: Applications using OAuth
+  scope: global
+  metric: requests_per_hour
+  limit: 15000
+  timeFrame: hour
+notes: >-
+  Some endpoints have stricter per-endpoint limits; the per-endpoint ceiling is
+  returned in X-Rate-Limit-Limit.

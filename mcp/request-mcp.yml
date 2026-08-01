@@ -1,0 +1,44 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: https://docs.request.finance/
+note: >-
+  Request Finance publishes no official hosted/remote MCP server (none found in docs,
+  npm @modelcontextprotocol, or MCP registries). This is a CANDIDATE tool list derived
+  from the documented REST operations, not an authoritative provider server. No
+  MCPServer pointer is wired in apis.yml because no real server exists.
+server:
+  name: request-finance
+  transport: http
+  url: null
+tools:
+- name: create_invoice
+  description: Create (and optionally send) an invoice.
+  source_operation: POST https://api.request.finance/invoices
+- name: create_payroll_payment
+  description: Create an off-chain or on-chain payroll payment (meta.format rnf_salary).
+  source_operation: POST https://api.request.finance/invoices
+- name: list_invoices
+  description: List invoices with pagination and filters.
+  source_operation: GET https://api.request.finance/invoices
+- name: get_invoice
+  description: Fetch an invoice by id.
+  source_operation: GET https://api.request.finance/invoices/{id}
+- name: update_invoice
+  description: Update an existing invoice.
+  source_operation: POST https://api.request.finance/invoices/{id}
+- name: change_invoice
+  description: Approve, reject, cancel, or declare payment on an invoice.
+  source_operation: POST https://api.request.finance/invoices/{id}/changes
+- name: download_invoice_pdf
+  description: Download an invoice PDF by type.
+  source_operation: GET https://api.request.finance/invoices/{id}/pdf/{type}
+- name: list_clients
+  description: List customers or suppliers.
+  source_operation: GET https://api.request.finance/clients
+- name: get_client
+  description: Fetch a client by id.
+  source_operation: GET https://api.request.finance/clients/{clientId}
+- name: list_organizations
+  description: List organizations the user belongs to.
+  source_operation: GET https://api.request.finance/users/organizations

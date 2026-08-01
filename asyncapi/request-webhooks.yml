@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/webhooks
+spec_type: Webhooks
+description: >-
+  Request Finance sends real-time webhook notifications about invoice and salary
+  lifecycle changes. Webhooks require an OAuth app and account whitelisting (contact
+  support). Configure the webhook URL and secret in Settings > Developer > Apps.
+delivery:
+  transport: HTTP POST (JSON payload)
+  configuration: OAuth app in Settings > Developer > Apps (URL + secret required)
+  prerequisite: Account must be whitelisted for webhooks (contact support).
+security:
+  signature_header: X-Webhook-Signature
+  algorithm: HMAC-SHA256 of the raw request body, keyed by the webhook secret.
+payload:
+  fields:
+    variant: rnf_invoice | rnf_salary
+    event: create | accept | cancel | reject | declareSentPayment | declareReceivedPayment | paid
+    timestamp: Unix timestamp in milliseconds
+    invoice: Invoice object (same shape as GET /invoices/:id)
+events:
+- name: create
+  description: An invoice/salary is created.
+- name: accept
+  description: An invoice is accepted (approved) by the buyer.
+- name: cancel
+  description: An invoice is canceled (voided) by the seller.
+- name: reject
+  description: An invoice is rejected by the buyer.
+- name: declareSentPayment
+  description: >-
+    Crypto-to-fiat: funds arrived at the banking partner. Externally-paid: payer
+    marked the payable as paid.
+- name: declareReceivedPayment
+  description: >-
+    Crypto-to-fiat: payment sent to the recipient by the banking partner. Externally-
+    paid: recipient declared the payment received.
+- name: paid
+  description: >-
+    Crypto-to-fiat: same as declareReceivedPayment. Crypto-to-crypto: settled on-chain,
+    funds in the recipient wallet.
+event_scoping:
+  no_oauth_use: Events for every invoice sent/received by the account or organization.
+  authorization_code_flow: Events for invoices of users who authorized the app.
+  client_credentials_flow: Events for invoices the app itself creates.
+notes: >-
+  Request Finance publishes no AsyncAPI document; this is the documented webhook
+  catalog captured as the event surface.

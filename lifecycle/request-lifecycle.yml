@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/going-live
+versioning:
+  scheme: unversioned-host
+  base_url: https://api.request.finance/
+  payload_format: meta.format + meta.version (Request Network document format)
+  docs: https://docs.request.finance/getting-started
+deprecation:
+  policy_url: https://docs.request.finance/testing
+  items:
+  - subject: API keys
+    status: deprecating
+    replacement: OAuth 2.0 / OIDC (see Going Live)
+    note: 'Docs: "API keys are not recommended for a live application and will be deprecated."'
+  - subject: Legacy (non-OIDC-conformant) authentication
+    status: changed
+    effective: '2026-05'
+    note: >-
+      As of May 2026 authentication is OIDC-conformant (RS256 ID tokens, nonce
+      required, response_type semantics changed, no refresh token via Implicit Flow).
+      Integrations must be reviewed for compatibility.
+    docs: https://docs.request.finance/going-live
+  sunset_header: false
+status_page: https://status.request.finance/
+support: mailto:support@request.finance
+notes: >-
+  No formal published SLA / uptime target found. Deprecation is communicated in the
+  docs (API-key deprecation, May 2026 OIDC migration) rather than via RFC 8594
+  Sunset/Deprecation headers.

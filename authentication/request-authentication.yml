@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/getting-started
+docs: https://docs.request.finance/going-live
+summary:
+  types: [apiKey, oauth2, openIdConnect]
+  api_key_in: [header]
+  oauth2_flows: [authorizationCode, clientCredentials]
+  notes: >-
+    Two authentication modes. API keys (Bearer in the Authorization header) are for
+    quick starts and are being deprecated. OAuth 2.0 / OIDC via Auth0 is required for
+    production. As of May 2026 authentication is OIDC-conformant (RS256-signed ID
+    tokens, nonce required, response_type semantics changed).
+schemes:
+- name: apiKey
+  type: apiKey
+  in: header
+  parameter_name: Authorization
+  description: >-
+    Test or live API key placed directly in the Authorization header (no "Bearer"
+    prefix). Found in Settings > Developer > API keys. Recommended only for getting
+    started; will be deprecated in favor of OAuth.
+  deprecated: true
+  sources: [https://docs.request.finance/getting-started]
+- name: oauth2
+  type: oauth2
+  description: >-
+    OAuth 2.0 / OpenID Connect via Auth0. Access token used as a Bearer token in the
+    Authorization header, plus a mandatory X-Network header (test | live). Access
+    tokens expire after 24 hours; refresh tokens (Authorization Code Flow) or client
+    secret (Client Credentials Flow) mint new access tokens.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.request.finance/authorize
+    tokenUrl: https://auth.request.finance/oauth/token
+    audience: accounts
+    use_case: Act on your users' behalf (read/manage users' invoices).
+  - flow: clientCredentials
+    tokenUrl: https://auth.request.finance/oauth/token
+    audience: accounts
+    use_case: Act on your own account's behalf (send invoices from your account).
+  issuer: https://auth.request.finance
+  sources: [https://docs.request.finance/going-live]
+- name: openIdConnect
+  type: openIdConnect
+  description: >-
+    OIDC-conformant since May 2026. ID tokens signed asymmetrically (RS256).
+    Authentication requests must include a nonce.
+  sources: [https://docs.request.finance/going-live]
+headers:
+- name: Authorization
+  required: true
+  description: API key, or "Bearer <access_token>" for OAuth.
+- name: X-Network
+  required: true
+  values: [test, live]
+  description: Selects the test (Sepolia) or live network for OAuth-authenticated calls.
+- name: Accept
+  required: true
+  values: [application/json]
+- name: Content-Type
+  required: true
+  values: [application/json]

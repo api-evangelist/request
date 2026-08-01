@@ -1,7 +1,18 @@
 aid: request
-name: request
-description: request is a company surfaced as a portfolio company of balderton-capital and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+name: Request Finance
+description: >-
+  Request Finance is a crypto and fiat invoicing, payments, and payroll platform
+  that lets businesses issue invoices, accept payments in crypto and fiat, pay
+  contractors and employees, and manage accounts payable and receivable. Its
+  Accounts Payable and Receivable (AP/AR) REST API lets developers programmatically
+  create and send invoices, run off-chain and on-chain payroll payments, track
+  invoice status without polling blockchains or bank accounts, manage organizations
+  and clients, and download invoice PDFs. Invoices are settled through the Request
+  Network protocol across many EVM chains and stablecoins, with crypto-to-fiat
+  settlement via banking partners. The API uses Bearer authentication (API keys for
+  quick starts, OAuth 2.0 / OIDC via Auth0 for production), real-time webhooks with
+  HMAC-signed payloads, and a Sepolia testnet sandbox. Request Finance is backed by
+  Balderton Capital.
 url: https://raw.githubusercontent.com/api-evangelist/request/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +20,136 @@ x-backed-by:
 - balderton-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Payments
+- Invoicing
+- Crypto
+- Web3
+- Payroll
+- Stablecoins
+- Accounts Payable
+- Accounts Receivable
+- Fintech
+- Blockchain
+- REST API
+image: https://www.request.finance/
+apis:
+- name: Request Finance AP and AR API
+  description: >-
+    The Accounts Payable and Receivable REST API for issuing invoices, accepting
+    crypto and fiat payments, running payroll, and managing organizations and
+    clients. JSON request and response bodies, Bearer/OAuth authentication, standard
+    HTTP status codes, webhooks, and a Sepolia testnet sandbox.
+  humanURL: https://docs.request.finance/
+  baseURL: https://api.request.finance/
+  tags:
+  - Payments
+  - Invoicing
+  - Payroll
+  - Crypto
+  properties:
+  - type: Documentation
+    url: https://docs.request.finance/
+  - type: GettingStarted
+    url: https://docs.request.finance/getting-started
+  - type: APIReference
+    url: https://docs.request.finance/invoices
+  - type: Authentication
+    url: authentication/request-authentication.yml
+  - type: OAuthScopes
+    url: scopes/request-scopes.yml
+  - type: Sandbox
+    url: sandbox/request-sandbox.yml
+  - type: Conventions
+    url: conventions/request-conventions.yml
+  - type: Webhooks
+    url: asyncapi/request-webhooks.yml
+  - type: Lifecycle
+    url: lifecycle/request-lifecycle.yml
+  - type: Deprecation
+    url: lifecycle/request-lifecycle.yml
+  - type: Conformance
+    url: conformance/request-conformance.yml
+  - type: DataModel
+    url: data-model/request-data-model.yml
+  - type: Postman
+    url: https://www.postman.com/request-finance/workspace/request-finance-api-public/documentation/24913360-b5105a65-a6bd-4247-b3b1-ed60e5c8f5cb
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/request-trust-center.yml
+- type: DomainSecurity
+  url: security/request-domain-security.yml
 - type: Website
   url: https://www.request.finance/
+- type: DeveloperPortal
+  url: https://app.request.finance/developers/apps
+- type: Documentation
+  url: https://docs.request.finance/
+- type: APIReference
+  url: https://docs.request.finance/invoices
+- type: GettingStarted
+  url: https://docs.request.finance/getting-started
+- type: LLMsTxt
+  url: llms/request-llms.txt
+- type: StatusPage
+  url: https://status.request.finance/
+- type: Support
+  url: mailto:support@request.finance
+- type: HelpCenter
+  url: https://help.request.finance/
+- type: GitHubOrganization
+  url: https://github.com/RequestFinance
+- type: Postman
+  url: https://www.postman.com/request-finance/workspace/request-finance-api-public/
+- type: SignUp
+  url: https://app.request.finance/
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Webhooks
+  url: asyncapi/request-webhooks.yml
+- type: Authentication
+  url: authentication/request-authentication.yml
+- type: OAuthScopes
+  url: scopes/request-scopes.yml
+- type: Sandbox
+  url: sandbox/request-sandbox.yml
+- type: Conventions
+  url: conventions/request-conventions.yml
+- type: Lifecycle
+  url: lifecycle/request-lifecycle.yml
+- type: Deprecation
+  url: lifecycle/request-lifecycle.yml
+- type: Conformance
+  url: conformance/request-conformance.yml
+- type: Compliance
+  url: security/request-trust-center.yml
+- type: DataModel
+  url: data-model/request-data-model.yml
+- type: RateLimits
+  url: rate-limits/request-rate-limits.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

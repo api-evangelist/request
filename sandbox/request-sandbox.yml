@@ -1,0 +1,41 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/testing
+test_live_separation:
+  mechanism: >-
+    A separate "Test" API key (Settings > Developer > API keys), and for OAuth an
+    X-Network header set to "test" vs "live". Test invoices are persisted on the
+    Sepolia testnet.
+  headers:
+    X-Network: [test, live]
+sandbox:
+  url: https://baguette-app.request.finance/
+  description: >-
+    Staging/sandbox web app. Use your existing Request Finance credentials to sign in.
+    Invoices created with a Test API key appear here.
+  network: Sepolia (Ethereum testnet)
+test_payments:
+  native:
+    token: ETH on Sepolia Testnet
+    how_to_fund: Use a public Sepolia faucet with your wallet address.
+    note: >-
+      The account that issued an invoice cannot pay it; create a second Request
+      Finance account for the buyer role.
+  erc20:
+    token: FAU
+    pegged_to: DAI
+    contract: '0x370de27fdb7d1ff1e1baa7d11c5820a324cf623c'
+    network: Sepolia
+    mint: >-
+      Call the mint() function on the FAU contract via Etherscan writeContract, with
+      value 10000000000000000000000 (= 10000 FAU, 18 decimals).
+    etherscan: https://sepolia.etherscan.io/address/0x370de27fdb7d1ff1e1baa7d11c5820a324cf623c#writeContract
+tooling:
+  postman_collection: https://www.postman.com/request-finance/workspace/request-finance-api-public/documentation/24913360-b5105a65-a6bd-4247-b3b1-ed60e5c8f5cb
+webhook_testing:
+- https://webhook.site
+- https://webhook-test.com/
+notes: >-
+  Never invent test values. All values above are published verbatim in the Request
+  Finance testing docs. API keys are recommended only for test/dev; production
+  integrations should use OAuth (see Going Live).

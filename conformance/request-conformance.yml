@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.request.finance/going-live
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OAuth 2.0 via Auth0 (auth.request.finance); authorizationCode + clientCredentials flows documented.
+- id: oidc
+  conforms: true
+  evidence: OIDC-conformant since May 2026; RS256-signed ID tokens, nonce required.
+- id: rfc6749-bearer
+  conforms: true
+  evidence: Bearer access tokens in the Authorization header.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: No application/problem+json content type documented; standard HTTP status codes with JSON bodies.
+- id: rest-json
+  conforms: true
+  evidence: REST API accepting and returning JSON with standard HTTP status codes.
+- id: pagination
+  conforms: true
+  evidence: Offset pagination (take/skip) on list endpoints.
+- id: webhooks-hmac
+  conforms: true
+  evidence: Webhook payloads signed with X-Webhook-Signature (HMAC-SHA256).
+- id: soc2
+  conforms: true
+  evidence: SOC 2 referenced on requestfinance.com (see security/request-trust-center.yml).
+compliance_program:
+  certifications: [SOC 2]
+  source: https://www.requestfinance.com/
