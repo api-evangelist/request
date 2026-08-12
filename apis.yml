@@ -96,6 +96,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/request-mcp.yml
 - type: TrustCenter
   url: security/request-trust-center.yml
 - type: DomainSecurity
