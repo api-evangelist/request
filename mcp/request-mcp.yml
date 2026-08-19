@@ -2,11 +2,9 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: https://docs.request.finance/
-note: >-
-  Request Finance publishes no official hosted/remote MCP server (none found in docs,
-  npm @modelcontextprotocol, or MCP registries). This is a CANDIDATE tool list derived
-  from the documented REST operations, not an authoritative provider server. No
-  MCPServer pointer is wired in apis.yml because no real server exists.
+note: Request Finance publishes no official hosted/remote MCP server (none found in docs, npm @modelcontextprotocol,
+  or MCP registries). This is a CANDIDATE tool list derived from the documented REST operations, not an
+  authoritative provider server. No MCPServer pointer is wired in apis.yml because no real server exists.
 server:
   name: request-finance
   transport: http
@@ -42,3 +40,9 @@ tools:
 - name: list_organizations
   description: List organizations the user belongs to.
   source_operation: GET https://api.request.finance/users/organizations
+deployment:
+  mode: none
+  verified: derived
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census
