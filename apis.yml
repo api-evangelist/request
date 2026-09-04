@@ -41,6 +41,7 @@ accessModel:
   confidence: medium
   source:
   - authentication
+  - {url: 'https://www.request.finance/', status: 302, note: 'declared website redirects to https://www.requestfinance.com/ — a different registrable domain (request.finance -> requestfinance.com), possible rename or acquisition (probed 2026-09-03, roadmap#169)'}
   generated: '2026-07-22'
   method: derived
 specificationVersion: '0.23'
@@ -107,8 +108,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
-- type: MCPServer
+- type: X-MCPServerCandidate
   url: mcp/request-mcp.yml
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
 - type: TrustCenter
   url: security/request-trust-center.yml
 - type: DomainSecurity
